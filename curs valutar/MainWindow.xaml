@@ -4,9 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:curs_valutar"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Curs Valutar" Height="442.8" Width="350"
+        Background="{DynamicResource WindowBackgroundBrush}" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <LinearGradientBrush x:Key="WindowBackgroundBrush">
+            <GradientStop Offset="0" Color="Silver"/>
+            <GradientStop Offset="1" Color="Gray"/>
+        </LinearGradientBrush>
+    </Window.Resources>
     <Grid>
-        
+        <Label Content="Publisher:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBlock Name="publisherName" HorizontalAlignment="Left" Margin="76,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
+
+        <Label Content="Date:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.801,2.172"/>
+        <TextBlock Text="jbdgfdgsd" Name="date" HorizontalAlignment="Left" Margin="52,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
+        <ListBox Name="moneyAbbreviations" HorizontalAlignment="Left" Height="200" Margin="16,72,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="Monetary value in RON:" HorizontalAlignment="Left" Margin="92,72,0,0" VerticalAlignment="Top"/>
+        <TextBlock Name="moneyValue" HorizontalAlignment="Left" Margin="233,77,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
     </Grid>
+
+
+
 </Window>

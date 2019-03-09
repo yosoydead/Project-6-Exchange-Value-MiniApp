@@ -15,9 +15,7 @@ namespace curs_valutar.Interfaces
     public interface IRate
     {   
         string Currency { get; set; }
-        string Multiplier { get; set; }
-
         //this is going to be the actual value of the given coin (or 100 coins) in RON
-        float Value { get; set; }
+        float MonetaryValue { get; set; }
     }
 }
