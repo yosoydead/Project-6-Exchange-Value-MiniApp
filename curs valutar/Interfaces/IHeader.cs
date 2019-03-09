@@ -16,5 +16,6 @@ namespace curs_valutar.Interfaces
     {
         string Publisher { get; set; }
         DateTime PublishingDate { get; set; }
+        
     }
 }
