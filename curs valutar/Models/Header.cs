@@ -9,7 +9,7 @@ namespace curs_valutar.Models
 {
     public class Header : IHeader
     {
-        public string Publisher { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime PublishingDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Publisher { get; set; }
+        public DateTime PublishingDate { get; set; }
     }
 }

@@ -9,8 +9,8 @@ namespace curs_valutar.Models
 {
     public class Body : IBody
     {
-        public string Subject { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string OrigCurrency { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<IRate> Cube { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Subject { get; set; }
+        public string OrigCurrency { get; set; }
+        public List<IRate> Cube { get; set; }
     }
 }

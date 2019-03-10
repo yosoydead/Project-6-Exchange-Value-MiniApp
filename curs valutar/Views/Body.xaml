@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="curs_valutar.Views.Body"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:curs_valutar.Views"
+             mc:Ignorable="d"
+             Background="Gray" Height="312" Width="350">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label FontSize="20" FontWeight="Bold" Content="Selected Coin:" Grid.Row="0" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top"/>
+        <TextBlock Grid.Row="0" Text="EUR" FontWeight="Bold" FontSize="20" Margin="225,15,77.4,14"/>
+
+        <ListBox Grid.Row="1" Name="moneyAbbreviations" HorizontalAlignment="Left" Height="190" Margin="10,15,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Grid.Row="1" Content="Monetary value in RON:" FontSize="15" HorizontalAlignment="Left" Margin="75,10,0,0" VerticalAlignment="Top"/>
+        <TextBlock Grid.Row="1" Name="moneyValue" Text="4.77" FontSize="15" HorizontalAlignment="Left" Margin="243,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
+        <Label FontSize="15" Content="Complete Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="75,45,0,0" Grid.Row="1"/>
+        <TextBlock FontSize="15" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Dirhamul Emiratelor Arabe unite" VerticalAlignment="Top" Margin="197,50,0,0" Grid.Row="1"/>
+
+
+    </Grid>
+</UserControl>

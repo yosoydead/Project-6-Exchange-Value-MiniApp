@@ -26,33 +26,33 @@ namespace curs_valutar
         public MainWindow()
         {
             InitializeComponent();
-            moneyAbbreviations.SelectionChanged += new SelectionChangedEventHandler(test);
+        //    moneyAbbreviations.SelectionChanged += new SelectionChangedEventHandler(test);
             
-            var header = parser.getHeaderData();
+        //    var header = parser.getHeaderData();
 
-            publisherName.Text = header[0];
-            date.Text = header[1];
+        //    //publisherName.Text = header[0];
+        //    //date.Text = header[1];
             
 
-            foreach (var item in dict)
-            {
-                moneyAbbreviations.Items.Add(item.Key);
-            }
+        //    foreach (var item in dict)
+        //    {
+        //        moneyAbbreviations.Items.Add(item.Key);
+        //    }
 
-            if(moneyAbbreviations.SelectedItem == null)
-            {
-                moneyAbbreviations.SelectedItem = moneyAbbreviations.Items[0];
-            }
+        //    if(moneyAbbreviations.SelectedItem == null)
+        //    {
+        //        moneyAbbreviations.SelectedItem = moneyAbbreviations.Items[0];
+        //    }
 
             
 
         }
 
-        private void test(object sender, SelectionChangedEventArgs e)
-        {
-            moneyValue.Text = dict[moneyAbbreviations.SelectedItem.ToString()].ToString();
-            //MessageBox.Show("clicked");
-        }
+        //private void test(object sender, SelectionChangedEventArgs e)
+        //{
+        //    moneyValue.Text = dict[moneyAbbreviations.SelectedItem.ToString()].ToString();
+        //    //MessageBox.Show("clicked");
+        //}
 
 
     }
