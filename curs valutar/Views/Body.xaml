@@ -12,21 +12,21 @@
             <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
         <Label FontSize="20" FontWeight="Bold" Content="Selected Coin:" Grid.Row="0" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top"/>
-        <TextBlock Grid.Row="0" Text="EUR" FontWeight="Bold" FontSize="20" Margin="225,15,77.4,14"/>
+        <TextBlock Grid.Row="0" Text="" FontWeight="Bold" FontSize="20" Margin="225,15,77.4,14"/>
 
         <ListBox Grid.Row="1" Name="moneyAbbreviations" HorizontalAlignment="Left" Height="190" Margin="10,15,0,0" VerticalAlignment="Top" Width="60"/>
 
         <Label Grid.Row="1" Content="Monetary value in RON:" FontSize="15" HorizontalAlignment="Left" Margin="75,10,0,0" VerticalAlignment="Top"/>
-        <TextBlock Grid.Row="1" Name="moneyValue" Text="4.77" FontSize="15" HorizontalAlignment="Left" Margin="243,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBlock Grid.Row="1" Name="moneyValue" Text="" FontSize="15" HorizontalAlignment="Left" Margin="243,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
 
         <Label FontSize="15" Content="Complete Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="75,45,0,0" Grid.Row="1"/>
-        <TextBlock FontSize="15" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Dirhamul Emiratelor Arabe unite" VerticalAlignment="Top" Margin="197,50,0,0" Grid.Row="1"/>
+        <TextBlock FontSize="15" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="197,50,0,0" Grid.Row="1"/>
 
         <Label FontSize="15" Content="Exchange sum:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="78,140,0,0" Grid.Row="1"/>
         <TextBox Name="NumberTextBox" PreviewTextInput="NumberValidationTextBox" FontSize="15" HorizontalAlignment="Left" Height="22" Margin="186,144,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
         <Label FontSize="15" Content="Exchanged total in RON:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="78,179,0,0" Grid.Row="1"/>
-        <TextBlock FontSize="15" HorizontalAlignment="Left" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Margin="249,184,0,0" Grid.Row="1" RenderTransformOrigin="2.357,0.414"/>
+        <TextBlock FontSize="15" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="249,184,0,0" Grid.Row="1" RenderTransformOrigin="2.357,0.414"/>
 
 
     </Grid> 

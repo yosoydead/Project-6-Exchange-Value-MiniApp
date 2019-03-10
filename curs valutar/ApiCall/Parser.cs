@@ -86,6 +86,17 @@ namespace curs_valutar.ApiCall
 
             return result;
         }
+
+        //this method will return true if the connection was successful and the XDocument element is not empty
+        public bool getStatus()
+        {
+            if(doc == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
         
     }
 }

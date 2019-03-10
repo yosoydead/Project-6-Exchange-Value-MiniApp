@@ -26,6 +26,18 @@ namespace curs_valutar
         public MainWindow()
         {
             InitializeComponent();
+            var status = parser.getStatus();
+            if (status)
+            {
+                Connected.Content = "Connected";
+                Connected.Foreground = Brushes.Green;
+            }
+            else
+            {
+                Connected.Content = "No internet connection";
+                Connected.Foreground = Brushes.Red;
+            }
+            
         //    moneyAbbreviations.SelectionChanged += new SelectionChangedEventHandler(test);
             
         //    var header = parser.getHeaderData();
