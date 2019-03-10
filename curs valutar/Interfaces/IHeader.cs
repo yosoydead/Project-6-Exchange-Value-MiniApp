@@ -15,7 +15,7 @@ namespace curs_valutar.Interfaces
     public interface IHeader
     {
         string Publisher { get; set; }
-        DateTime PublishingDate { get; set; }
+        string PublishingDate { get; set; }
         
     }
 }

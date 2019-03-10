@@ -23,6 +23,9 @@ namespace curs_valutar.Views
         public Header()
         {
             InitializeComponent();
+
+            //the data context is declared in the view xaml
+            //this.DataContext = new curs_valutar.ViewModels.HeaderViewModel();
         }
     }
 }

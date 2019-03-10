@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\HeaderViewModel.cs" />
     <Compile Include="Views\Body.xaml.cs">
       <DependentUpon>Body.xaml</DependentUpon>
     </Compile>
@@ -122,8 +123,6 @@
   <ItemGroup>
     <Resource Include="bnr.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

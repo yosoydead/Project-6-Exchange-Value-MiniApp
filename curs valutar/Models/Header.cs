@@ -10,6 +10,6 @@ namespace curs_valutar.Models
     public class Header : IHeader
     {
         public string Publisher { get; set; }
-        public DateTime PublishingDate { get; set; }
+        public string PublishingDate { get; set; }
     }
 }

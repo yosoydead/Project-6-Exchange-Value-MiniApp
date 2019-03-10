@@ -4,13 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:curs_valutar.Views"
+             xmlns:viewModel="clr-namespace:curs_valutar.ViewModels"
              mc:Ignorable="d" d:DesignWidth="350"
              Background="White" Height="70.8">
+
+    <UserControl.DataContext>
+        <viewModel:HeaderViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Label FontWeight="Bold" Content="Publisher:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBlock Name="publisherName" HorizontalAlignment="Left" Margin="76,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock Name="publisherName" Text="{Binding Path=Header.Publisher}" HorizontalAlignment="Left" Margin="76,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
 
-        <Label FontWeight="Bold" Content="Date:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.801,2.172"/>
-        <TextBlock Text="" Name="date" HorizontalAlignment="Left" Margin="52,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label FontWeight="Bold" Content="Publishing Date:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.801,2.172"/>
+        <TextBlock Text="{Binding Path=Header.PublishingDate}" Name="date" HorizontalAlignment="Left" Margin="112,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
     </Grid>
 </UserControl>

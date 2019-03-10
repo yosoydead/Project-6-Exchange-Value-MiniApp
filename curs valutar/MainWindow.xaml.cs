@@ -22,19 +22,19 @@ namespace curs_valutar
     public partial class MainWindow : Window
     {
         static Parser parser = new Parser();
-        static Dictionary<string,float> dict = parser.getCubes();
+        //static Dictionary<string,float> dict = parser.getCubes();
         public MainWindow()
         {
             InitializeComponent();
             var status = parser.getStatus();
             if (status)
             {
-                Connected.Content = "Connected";
+                Connected.Text = "Connected";
                 Connected.Foreground = Brushes.Green;
             }
             else
             {
-                Connected.Content = "No internet connection";
+                Connected.Text = "No internet connection or the link has changed. Report this problem asap.";
                 Connected.Foreground = Brushes.Red;
             }
             

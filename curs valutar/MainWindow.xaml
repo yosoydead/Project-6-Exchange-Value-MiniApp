@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:curs_valutar.Views"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Curs Valutar" Height="496.4" Width="350"
+        Title="Curs Valutar" Height="499.6" Width="350"
         Background="{DynamicResource WindowBackgroundBrush}" ResizeMode="CanMinimize">
     <Window.Resources>
         <LinearGradientBrush x:Key="WindowBackgroundBrush">
@@ -23,7 +23,7 @@
 
         <views:Header Grid.Column="0" Grid.Row="0" Margin="0,10,0,56.6"/>
         <views:Body Grid.Column="0" Grid.Row="0" Margin="0,86,0,9.6" Grid.RowSpan="2"/>
-        <Label Name="Connected" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,276.8,0,0" Grid.Row="1"/>
+        <TextBlock TextWrapping="Wrap" Name="Connected" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,276.8,0,0" Grid.Row="1"/>
     </Grid>
 
 

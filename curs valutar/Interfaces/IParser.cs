@@ -10,6 +10,6 @@ namespace curs_valutar.Interfaces
     {
         List<string> getHeaderData();
         List<object> getBodyData();
-        List<Dictionary<string, float>> getCube();
+        Dictionary<string, float> getCube();
     }
 }
