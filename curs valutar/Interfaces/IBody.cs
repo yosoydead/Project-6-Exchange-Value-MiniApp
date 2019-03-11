@@ -21,6 +21,6 @@ namespace curs_valutar.Interfaces
     {
         string Subject { get; set; }
         string OrigCurrency { get; set; }
-        List<IRate> Cube { get; set; }
+        //List<IRate> Cube { get; set; }
     }
 }

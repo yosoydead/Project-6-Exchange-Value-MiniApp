@@ -11,6 +11,6 @@ namespace curs_valutar.Models
     {
         public string Subject { get; set; }
         public string OrigCurrency { get; set; }
-        public List<IRate> Cube { get; set; }
+        //public List<IRate> Cube { get; set; }
     }
 }
