@@ -23,20 +23,19 @@ namespace curs_valutar.Views
     public partial class Body : UserControl
     {
         public string OrigCurrency { get; internal set; }
-
-        public Body()
-        {
-            InitializeComponent();
-            currencyAbbreviations();
-
-            //subscribe to that event from the abbreviation list
-            moneyAbbreviations.SelectionChanged += new SelectionChangedEventHandler(updateAbbreviationAndValue);
-        }
-
         public string Subject { get; internal set; }
 
         private int dots { get; set; } = 0;
         private Color red = Color.FromRgb(237, 28, 36);
+
+        public Body()
+        {
+            InitializeComponent();
+            //subscribe to that event from the abbreviation list
+            moneyAbbreviations.SelectionChanged += new SelectionChangedEventHandler(updateAbbreviationAndValue);
+            currencyAbbreviations();
+
+        }
 
         //a function that should validate the input field to be only numbers
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -106,6 +105,12 @@ namespace curs_valutar.Views
             {
                 moneyAbbreviations.Items.Add(item);
             }
+
+            if (moneyAbbreviations.SelectedItem == null)
+            {
+                moneyAbbreviations.Focus();
+                moneyAbbreviations.SelectedItem = moneyAbbreviations.Items[0];
+            }
         }
 
         //make a custom event listener so i can update the selected value from the abbreviation list
@@ -119,20 +124,55 @@ namespace curs_valutar.Views
             //MessageBox.Show("clicked");
         }
 
+        //this event helps solve a bug that i found by accident
+        //if i were to press the spacebar while NumberTextBox was selected, it would add inside it
+        //whitespaces and obviously i dont want that to happen, so this event triggers everytime a press a key
+        //the event type is PreviewKeyDown and it lets me know of any key press before it can make any action
         private void CheckSpaceBar(object sender, KeyEventArgs e)
         {
+            //if the key is space, set the background to red and set Handled to true
+            //this means that the event was handled and no empty space was added to NumberTextBox
             if(e.Key == Key.Space)
             {
                 NumberTextBox.Background = new SolidColorBrush(red);
-                MessageBox.Show("spacebar");
+                //MessageBox.Show("spacebar");
                 e.Handled = true;
             }
+
+            //if the prev key pressed is space, the background would be red and if i were to press
+            //backspace, the background would still be red, so i added another thing here to reset
+            //the background color
+            //the Handled property is set to false because i want the action to happen
             if(e.Key == Key.Back)
             {
-                MessageBox.Show("backspace");
+                //MessageBox.Show("backspace");
                 NumberTextBox.Background = Brushes.White;
                 e.Handled = false;
             }
+        }
+
+        //this function just gets the value of NumberTextBox, converts it to a number
+        //calculates the result and displays it to the view
+        private void onClickCalculate(object sender, RoutedEventArgs e)
+        {
+            //get the value from the numbertextbox
+            var value = NumberTextBox.Text;
+
+            //convert that amount to a float
+            float amount;
+
+            if(value == "")
+            {
+                ConvertedAmount.Text = "";
+            }
+            else
+            {
+                var dict = new BodyViewModel().d;
+                amount = float.Parse(value);
+                var result = amount * dict[moneyAbbreviations.SelectedItem.ToString()];
+                ConvertedAmount.Text = result.ToString();
+            }
+
         }
     }
 }
