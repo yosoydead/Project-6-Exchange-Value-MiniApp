@@ -25,15 +25,30 @@ namespace curs_valutar.Views
         public string OrigCurrency { get; internal set; }
         public string Subject { get; internal set; }
 
+        private Dictionary<string, float> dict = new BodyViewModel().d;
         private int dots { get; set; } = 0;
         private Color red = Color.FromRgb(237, 28, 36);
 
         public Body()
         {
             InitializeComponent();
+
             //subscribe to that event from the abbreviation list
-            moneyAbbreviations.SelectionChanged += new SelectionChangedEventHandler(updateAbbreviationAndValue);
-            currencyAbbreviations();
+            moneyAbbreviations.SelectionChanged += new SelectionChangedEventHandler(UpdateAbbreviationAndValue);
+
+            //event that ensures the textbox is not populated by  more than 1 dot for floating points,
+            //no alphabetic characters 
+            // xaml syntax would be == PreviewTextInput="NumberValidationTextBox"
+            NumberTextBox.PreviewTextInput += new TextCompositionEventHandler(NumberValidationTextBox);
+
+            //event that there wont be any white spaces added to the textbox
+            //backspace clears the red background
+            //xaml syntax = PreviewKeyDown="CheckSpaceBar"
+            NumberTextBox.PreviewKeyDown += new KeyEventHandler(CheckSpaceBar);
+
+            //event for the button to calculate
+            Convert.Click += OnClickCalculate;
+            CurrencyAbbreviations();
 
         }
 
@@ -44,7 +59,16 @@ namespace curs_valutar.Views
             //e.Handled = regex.IsMatch(e.Text);
             
             SolidColorBrush brush = new SolidColorBrush(red);
+            if(NumberTextBox.SelectionLength == NumberTextBox.Text.Length)
+            {
+                NumberTextBox.Text = "";
+            }
 
+            if(NumberTextBox.Text == "")
+            {
+                dots = 0;
+            }
+            
             foreach (var item in NumberTextBox.Text)
             {
                 if(item == '.')
@@ -97,7 +121,7 @@ namespace curs_valutar.Views
 
         //i currently dont know how to populate this listbox from the viewmodel
         //and i know that the view is not supposed to do too much work
-        private void currencyAbbreviations()
+        private void CurrencyAbbreviations()
         {
             var list = new BodyViewModel().currencyAbbreviations;
 
@@ -106,6 +130,8 @@ namespace curs_valutar.Views
                 moneyAbbreviations.Items.Add(item);
             }
 
+            //if the list count would be 0, it cant select a null item and it would throw an error
+            //the error happens if the xml link is broken/there is no internet access
             if (moneyAbbreviations.SelectedItem == null && list.Count != 0)
             {
                 moneyAbbreviations.Focus();
@@ -115,11 +141,14 @@ namespace curs_valutar.Views
 
         //make a custom event listener so i can update the selected value from the abbreviation list
         //and display it to the view
-        private void updateAbbreviationAndValue(object sender, SelectionChangedEventArgs e)
+        private void UpdateAbbreviationAndValue(object sender, SelectionChangedEventArgs e)
         {
-            var dict = new BodyViewModel().d;
             selectedValue.Text = moneyAbbreviations.SelectedItem.ToString();
             moneyValue.Text = dict[moneyAbbreviations.SelectedItem.ToString()].ToString();
+
+            //every time you select a new coin, the value from the textbox will be converted automatically 
+            //to RON
+            OnClickCalculate(sender, e);
             //selectedValue.Text = dict[moneyAbbreviations.SelectedItem.ToString()].ToString();
             //MessageBox.Show("clicked");
         }
@@ -153,7 +182,7 @@ namespace curs_valutar.Views
 
         //this function just gets the value of NumberTextBox, converts it to a number
         //calculates the result and displays it to the view
-        private void onClickCalculate(object sender, RoutedEventArgs e)
+        private void OnClickCalculate(object sender, RoutedEventArgs e)
         {
             //get the value from the numbertextbox
             var value = NumberTextBox.Text;
@@ -167,7 +196,9 @@ namespace curs_valutar.Views
             }
             else
             {
-                var dict = new BodyViewModel().d;
+                //MessageBox.Show(NumberTextBox.SelectionLength.ToString());
+                NumberTextBox.Background = Brushes.White;
+                //var dict = new BodyViewModel().d;
                 amount = float.Parse(value);
                 var result = amount * dict[moneyAbbreviations.SelectedItem.ToString()];
                 ConvertedAmount.Text = result.ToString();
