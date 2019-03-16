@@ -6,25 +6,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using curs_valutar.Interfaces;
 using curs_valutar.Models;
 
 
 namespace curs_valutar.ApiCall
 {
-    public class Parser
+    public class Parser: IParser
     {
         //this is the link for the api xml call
-        private readonly string xmlUrl = @"http://www.bnr.ro/nbrfxrates.xml";
+        private readonly string _xmlUrl = @"http://www.bnr.ro/nbrfxrates.xml";
 
         //this grabs the entire xml document
         //private static XDocument doc = XDocument.Load(xmlUrl);
 
-        private readonly XDocument doc = null;
-        private IEnumerable<XElement> root;
+        private readonly XDocument _doc = null;
+        private IEnumerable<XElement> _root;
 
         //this method tests if the connection to the url can be successfully done or not
         //even if there is not internet access, it returns false
-        private bool canConnect(string url)
+        private bool CanConnect(string url)
         {
             var result = false;
             try
@@ -46,10 +47,10 @@ namespace curs_valutar.ApiCall
 
         public Parser()
         {
-            if(getStatus() == true)
+            if(GetStatus() == true)
             {
-                doc = XDocument.Load(xmlUrl);
-                root = doc.Root.Elements();
+                _doc = XDocument.Load(_xmlUrl);
+                _root = _doc.Root.Elements();
             }
             //doc = XDocument.Load(xmlUrl);
             //doc = XDocument.Load(xmlUrl);
@@ -62,12 +63,12 @@ namespace curs_valutar.ApiCall
         //in total i would have only two elements
         //private IEnumerable<XElement> root = doc.Root.Elements();
 
-        public List<string> getHeaderData()
+        public List<string> GetHeaderData()
         {
             List<string> result = new List<string>();
 
             //this is the first node in the xml document
-            var header = root.First();
+            var header = _root.First();
 
             IEnumerable<XElement> headerData = header.Elements();
 
@@ -80,34 +81,34 @@ namespace curs_valutar.ApiCall
             return result;
         }
 
-        public string getBodySubject()
+        public string GetBodySubject()
         {
             //the root.Last() is the entire body tag in the xml document
             //with .Elements() i get a list of all 3 tags inside of it
             //and from that list, i need only the first item
-            var subject = root.Last().Elements().ElementAt(0);
+            var subject = _root.Last().Elements().ElementAt(0);
             return subject.Value;
         }
 
-        public string getBodyOrigCurrency()
+        public string GetBodyOrigCurrency()
         {
             //the root.Last() is the entire body tag in the xml document
             //with .Elements() i get a list of all 3 tags inside of it
             //and from that list, i need only the second item
-            var origCurrency = root.Last().Elements().ElementAt(1);
+            var origCurrency = _root.Last().Elements().ElementAt(1);
             return origCurrency.Value;
         }
 
         //based on the interface and model i defined, the body will have a Cubes dictionary that contains
         //as a key the coin abbreviation and as a value its monetary value
-        public Dictionary<string, float> getCubes()
+        public Dictionary<string, float> GetCubes()
         {
             //this is going to be the full dictionary containing every coin abbreviation and its monetary value in RON
             Dictionary<string, float> result = new Dictionary<string, float>();
 
             //accessing the body node in the xml document
             //its the second element
-            var body = root.Last();
+            var body = _root.Last();
 
             //by accessing the first time the elements from the body i get only 3 nodes because the body node contains:
             //  - subject
@@ -146,7 +147,7 @@ namespace curs_valutar.ApiCall
         }
 
         //this method will return true if the connection was successful
-        public bool getStatus()
+        public bool GetStatus()
         {
             //if(doc == null)
             //{
@@ -154,8 +155,7 @@ namespace curs_valutar.ApiCall
             //}
 
             //return true;
-            return canConnect(xmlUrl) == true;
+            return CanConnect(_xmlUrl) == true;
         }
-        
     }
 }

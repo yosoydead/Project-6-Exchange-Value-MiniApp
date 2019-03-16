@@ -26,7 +26,7 @@ namespace curs_valutar
         public MainWindow()
         {
             InitializeComponent();
-            var status = parser.getStatus();
+            var status = parser.GetStatus();
             if (status)
             {
                 Connected.Text = "Connected";

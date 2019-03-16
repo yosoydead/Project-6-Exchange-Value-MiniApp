@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using curs_valutar.ApiCall;
+using curs_valutar.Interfaces;
 using curs_valutar.Models;
 
 namespace curs_valutar.ViewModels
@@ -13,23 +14,24 @@ namespace curs_valutar.ViewModels
     {
         public Header Header { get; set; }
 
-        private bool? canOperate;
+        private bool? _canOperate;
 
-        private Parser myParser = new Parser();
+        private IParser _myParser;
         
         public HeaderViewModel()
         {
+            _myParser = new Parser();
             //first find out if i can get access to the xml
-            canOperate = myParser.getStatus();
-            loadHeader();
+            _canOperate = _myParser.GetStatus();
+            LoadHeader();
         }
 
-        public void loadHeader()
+        private void LoadHeader()
         {
-            if(canOperate == true)
+            if(_canOperate == true)
             {
                 //get the list that the parser hands me containing the data in the named fields from the xml
-                var xmlData = myParser.getHeaderData();
+                var xmlData = _myParser.GetHeaderData();
 
                 //from this list, i need only the first two items
                 //create a new model

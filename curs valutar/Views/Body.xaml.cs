@@ -106,7 +106,7 @@ namespace curs_valutar.Views
                 moneyAbbreviations.Items.Add(item);
             }
 
-            if (moneyAbbreviations.SelectedItem == null)
+            if (moneyAbbreviations.SelectedItem == null && list.Count != 0)
             {
                 moneyAbbreviations.Focus();
                 moneyAbbreviations.SelectedItem = moneyAbbreviations.Items[0];
